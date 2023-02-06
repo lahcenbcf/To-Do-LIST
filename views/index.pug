@@ -1,0 +1,25 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0")
+    title todolist
+    style 
+      include ../public/styles/style.css
+    body 
+        div(class="h-20 w-[80%] mx-auto rounded-sm my-6")
+            form(method="post", class="bg-slate-100 flex gap-x-3 justify-center items-center h-[100%] w-[100%]",id="form") 
+                input(type="text", name="item" ,class="w-[80%] outline-none p-2",placeholder="toDo item",id="input")
+                button(type="submit",class="bg-blue-400 p-2 text-white font-bold") submit
+        div(class="h-auto w-[90%] mx-auto my-3 p-4 flex flex-col gap-y-2",id="list")
+          each val in items 
+            div(class="bg-slate-200 w-[80%] mx-auto p-2 flex justify-between items-center")
+              h3(class="item-text text-slate-500 font-medium")=val.text
+              div(class="flex justify-center gap-x-3")
+                button(data-id=val._id,class="delete p-1 rounded-sm bg-red-600 text-white") Delete 
+                button(data-id=val._id,class="edit p-1 bg-emerald-500 text-white") edit  
+        button(class="absolute left-32 p-2 bg-blue-400 rounded-sm text-blue-100",id="refresh") refresh     
+    script(src="https://unpkg.com/axios/dist/axios.min.js")  
+    script
+      include ../public/browser.js
